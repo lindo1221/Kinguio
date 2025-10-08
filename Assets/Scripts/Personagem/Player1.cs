@@ -21,16 +21,50 @@ public class Player : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     public Transform npc;
     public float knock = 50;
-   
+
     public float tempoRestante = 0.5f;
     public bool acionado = false;
 
-   
-    
+    public bool podeEntrar = false;
+    public bool naAgua = false;
+    public Respiracao respirar;
+    public GameObject painel;
 
-    
+    public BoxCollider2D ataque;
+    public float tim = 0.05f;
+    public bool atacou = false;
+    public GameObject boxAtaque;
+
+    public GameObject icone;
+
+    public void ataqueTime()
+    {
+        if (atacou)
+        {
+            tim -= Time.deltaTime;
+        }
+    }
+    public void OnAtacar(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            boxAtaque.SetActive(true);
+            ataque.size = new Vector2(2, 1);
+            atacou = true;
+        }
+        if (tim <= 0)
+        {
+            ataque.size = new Vector2(0, 1);
+            atacou = false;
+            tim = 0.05f;
+            boxAtaque.SetActive(false);
+        }
+
+    }
     void Start()
     {
+        icone.SetActive(false);
+        boxAtaque.SetActive(false);
         rg = GetComponent<Rigidbody2D>();
     }
 
@@ -43,7 +77,8 @@ public class Player : MonoBehaviour
         {
             transform.localScale = new Vector3(Mathf.Sign(mover.x), 1, 1);
         }
-        timerzin();
+        ataqueTime();
+
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -58,14 +93,26 @@ public class Player : MonoBehaviour
             rg.AddForce(Vector2.up * pulo);
             Djump++;
         }
+        if (context.phase == InputActionPhase.Performed && naAgua)
+        {
+            int nado = 100;
+            rg.AddForce(Vector2.up * nado);
+
+        }
     }
-    
+
     void FixedUpdate()
     {
 
         rg.velocity = new Vector2(mover.x * velocidade, rg.velocity.y);
-
-        
+    }
+    public void OnEntrar(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed && podeEntrar)
+        {
+            SceneManager.LoadScene("Cabana");
+            podeEntrar = false;
+        }
 
     }
     public void OnCollisionEnter2D(Collision2D collision)
@@ -74,30 +121,65 @@ public class Player : MonoBehaviour
         {
 
             Djump = 2;
-        }  
+        }
         if (collision.gameObject.CompareTag("item"))
         {
-           
+
             points++;
             Destroy(collision.gameObject);
             pegado = true;
-        
+
         }
         if (collision.gameObject.CompareTag("inimigo"))
         {
-            velocidade = 0;
-            rg.AddForce(Vector2.left * knock);
-            acionado = true;
-            timerzin();
-         
+
+
         }
-        
+        if (collision.gameObject.CompareTag("sair"))
+        {
+            SceneManager.LoadScene("SampleScene");
+        }
+
 
     }
-
-    public void timerzin() 
+    public void OnTriggerEnter2D(Collider2D collision)
     {
-        if (acionado) 
+        if (collision.gameObject.CompareTag("entrar"))
+        {
+            icone.SetActive(true);
+            podeEntrar = true;
+        }       
+        if (collision.gameObject.CompareTag("agua"))
+        {
+           
+            painel.SetActive(true);
+            rg.drag = 0.4f;
+            respirar.semAr = true;
+            naAgua = true;
+        }
+    }
+    public void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("agua"))
+        {
+            respirar.ar = respirar.arMaximo;
+            painel.SetActive(false);
+            respirar.semAr = false;
+            naAgua = false;
+            respirar.tempoMortal = 3f;
+            respirar.temposem = 3f;
+
+        }
+        if (collision.gameObject.CompareTag("entrar"))
+        {
+            icone.SetActive(false);
+            podeEntrar = false;
+        }
+
+    }
+    public void timerzin()
+    {
+        if (acionado)
         {
             if (tempoRestante > 0)
             {
@@ -110,7 +192,7 @@ public class Player : MonoBehaviour
                 acionado = false;
             }
         }
-      
+
     }
     void OnDrawGizmos()
     {

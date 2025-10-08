@@ -2,15 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.UI;
+
 public class DialogueSystem : MonoBehaviour
 {
     [Header("Configuração do NPC")]
     [TextArea(2, 5)]
     public string[] dialogueNpc;
     public string[] NameNpc;
-                               
+    public Sprite npcSprite;              // Sprite do NPC
     [Header("Referências UI")]
     public GameObject dialoguePanel;
     public TextMeshProUGUI dialogueText;
@@ -19,15 +19,9 @@ public class DialogueSystem : MonoBehaviour
     [Header("Configurações")]
     public float typingSpeed = 0.05f;
     private int dialogueIndex = 0;
-    public bool readyToSpeak = false;
-    public bool isTalking = false;
+    private bool readyToSpeak = false;
+    private bool isTalking = false;
     private Coroutine typingCoroutine;
-    public bool podeler = false;
-    public void Prontopraler(InputAction.CallbackContext context)
-    {
-        if (context.phase == InputActionPhase.Performed) podeler = true;
-
-    }
 
     void Start()
     {
@@ -37,7 +31,7 @@ public class DialogueSystem : MonoBehaviour
 
     void Update()
     {
-        if (readyToSpeak && podeler)
+        if (readyToSpeak && Input.GetKeyDown(KeyCode.E))
         {
             if (!isTalking)
             {
@@ -110,8 +104,7 @@ public class DialogueSystem : MonoBehaviour
         dialogueIndex = 0;
     }
 
-   
-    public void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("player"))
         {
@@ -120,7 +113,7 @@ public class DialogueSystem : MonoBehaviour
         }
     }
 
-    public void OnTriggerExit2D(Collider2D collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("player"))
         {
@@ -128,6 +121,4 @@ public class DialogueSystem : MonoBehaviour
             if (isTalking) EndDialogue();
         }
     }
-    
-   
 }

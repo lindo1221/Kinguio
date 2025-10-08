@@ -9,6 +9,10 @@ TagManager:
   - player
   - inimigo
   - Npc
+  - entrar
+  - sair
+  - agua
+  - ataque
   layers:
   - Default
   - TransparentFX
