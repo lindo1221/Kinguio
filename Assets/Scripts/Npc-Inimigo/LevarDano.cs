@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Inimigo : MonoBehaviour
+public class LevarDano : MonoBehaviour
 {
     public int vida = 10;
     void Start()

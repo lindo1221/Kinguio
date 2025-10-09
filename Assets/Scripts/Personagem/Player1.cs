@@ -15,9 +15,11 @@ public class Player : MonoBehaviour
     public LayerMask oQueEChao;
     public bool noChao;
     public int Djump = 2;
+
     public bool pegado = false;
     public int points = 0;
-    private DialogueSystem dialogueSystem;
+
+    private DialogueSystemnew dialogueSystem;
     private SpriteRenderer spriteRenderer;
     public Transform npc;
     public float knock = 50;
@@ -26,6 +28,9 @@ public class Player : MonoBehaviour
     public bool acionado = false;
 
     public bool podeEntrar = false;
+    public GameObject icone;
+
+
     public bool naAgua = false;
     public Respiracao respirar;
     public GameObject painel;
@@ -34,8 +39,10 @@ public class Player : MonoBehaviour
     public float tim = 0.05f;
     public bool atacou = false;
     public GameObject boxAtaque;
+    public float cooldown = 0.5f;
+    public bool estaemcool = true;
 
-    public GameObject icone;
+
 
     public void ataqueTime()
     {
@@ -43,14 +50,14 @@ public class Player : MonoBehaviour
         {
             tim -= Time.deltaTime;
         }
-    }
-    public void OnAtacar(InputAction.CallbackContext context)
-    {
-        if (context.phase == InputActionPhase.Performed)
+        if (estaemcool) 
         {
-            boxAtaque.SetActive(true);
-            ataque.size = new Vector2(2, 1);
-            atacou = true;
+            cooldown -= Time.deltaTime;
+        }
+        if (cooldown <= 0)
+        {
+            estaemcool = false;
+            cooldown = 0.5f;
         }
         if (tim <= 0)
         {
@@ -59,7 +66,16 @@ public class Player : MonoBehaviour
             tim = 0.05f;
             boxAtaque.SetActive(false);
         }
-
+    }
+    public void OnAtacar(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed && estaemcool == false)
+        {
+            boxAtaque.SetActive(true);
+            ataque.size = new Vector2(2, 1);
+            atacou = true;
+            estaemcool = true;
+        }
     }
     void Start()
     {
@@ -203,7 +219,7 @@ public class Player : MonoBehaviour
     private void Awake()
     {
 
-        dialogueSystem = FindObjectOfType<DialogueSystem>();
+        dialogueSystem = FindObjectOfType<DialogueSystemnew>();
 
         spriteRenderer = GetComponent<SpriteRenderer>();
 

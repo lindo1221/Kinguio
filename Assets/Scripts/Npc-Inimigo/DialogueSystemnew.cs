@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DialogueSystem : MonoBehaviour
+public class DialogueSystemnew : MonoBehaviour
 {
     [Header("Configuração do NPC")]
     [TextArea(2, 5)]
