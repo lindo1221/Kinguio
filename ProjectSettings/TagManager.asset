@@ -13,6 +13,7 @@ TagManager:
   - sair
   - agua
   - ataque
+  - power
   layers:
   - Default
   - TransparentFX

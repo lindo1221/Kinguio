@@ -35,52 +35,15 @@ public class Player : MonoBehaviour
     public Respiracao respirar;
     public GameObject painel;
 
-    public BoxCollider2D ataque;
-    public float tim = 0.05f;
-    public bool atacou = false;
-    public GameObject boxAtaque;
-    public float cooldown = 0.5f;
-    public bool estaemcool = true;
+   
 
+    public bool antibugagua = true;
 
-
-    public void ataqueTime()
-    {
-        if (atacou)
-        {
-            tim -= Time.deltaTime;
-        }
-        if (estaemcool) 
-        {
-            cooldown -= Time.deltaTime;
-        }
-        if (cooldown <= 0)
-        {
-            estaemcool = false;
-            cooldown = 0.5f;
-        }
-        if (tim <= 0)
-        {
-            ataque.size = new Vector2(0, 1);
-            atacou = false;
-            tim = 0.05f;
-            boxAtaque.SetActive(false);
-        }
-    }
-    public void OnAtacar(InputAction.CallbackContext context)
-    {
-        if (context.phase == InputActionPhase.Performed && estaemcool == false)
-        {
-            boxAtaque.SetActive(true);
-            ataque.size = new Vector2(2, 1);
-            atacou = true;
-            estaemcool = true;
-        }
-    }
+   
     void Start()
     {
         icone.SetActive(false);
-        boxAtaque.SetActive(false);
+       
         rg = GetComponent<Rigidbody2D>();
     }
 
@@ -93,7 +56,7 @@ public class Player : MonoBehaviour
         {
             transform.localScale = new Vector3(Mathf.Sign(mover.x), 1, 1);
         }
-        ataqueTime();
+       
 
     }
 

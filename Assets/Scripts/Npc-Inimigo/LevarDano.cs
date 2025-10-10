@@ -22,7 +22,12 @@ public class LevarDano : MonoBehaviour
         {
             vida--;
         }
+        if (collision.gameObject.CompareTag("power"))
+        {
+            vida -= 5;
+        }
     }
+
     public void Destroy()
     {
         if(vida <= 0) 
