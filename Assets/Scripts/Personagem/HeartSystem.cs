@@ -13,10 +13,15 @@ public class HeartSystem : MonoBehaviour
     public Sprite cheio;
     public Sprite vazio;
 
+    public bool piscar = false;
+    public float tempoPiscaOff = 0.3f;
+    public float tempoPiscaOn = 1;
+
     void Update()
     {
         HealthLogic();
         DeadState();
+        piscaHearty();
     }
 
     public void HealthLogic()
@@ -24,14 +29,12 @@ public class HeartSystem : MonoBehaviour
         for (int i = 0; i < coracao.Length; i++)
         {
             if (i < vida)
-            {
-                coracao[i].sprite = cheio;
+            {                               
+              coracao[i].sprite = cheio;                  
             }
             else
             {
                 coracao[i].sprite = vazio;
-                
-
             }
             if (i < vidaMaxima)
             {
@@ -43,6 +46,20 @@ public class HeartSystem : MonoBehaviour
             }
           
         }
+    }
+    public void piscaHearty()
+    {
+        if (piscar)
+        {
+            tempoPiscaOn -= Time.deltaTime;
+            tempoPiscaOff = 0.5f;
+        }
+        if (tempoPiscaOff < 0)
+        {
+            tempoPiscaOff -= Time.deltaTime;
+            tempoPiscaOn = 0.3f;
+        }
+
     }
     public void DeadState()
     {

@@ -34,7 +34,7 @@ public class Player : MonoBehaviour
     public bool naAgua = false;
     public Respiracao respirar;
     public GameObject painel;
-
+    public HeartSystem heartSystem;
    
 
     public bool antibugagua = true;
@@ -147,7 +147,7 @@ public class Player : MonoBehaviour
             naAgua = false;
             respirar.tempoMortal = 3f;
             respirar.temposem = 3f;
-
+           heartSystem.piscar = false;
         }
         if (collision.gameObject.CompareTag("entrar"))
         {

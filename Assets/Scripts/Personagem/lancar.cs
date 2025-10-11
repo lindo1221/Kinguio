@@ -12,7 +12,7 @@ public class Lancar : MonoBehaviour
     public int forca = 900;
     public Transform posicaoDeLanca;
     public Transform tPlayer;
-
+    public Energia energia;
     void Start()
     {
         prefabObe.SetActive(true);
@@ -28,24 +28,31 @@ public class Lancar : MonoBehaviour
     {
         pegarposi();
         rbitem.velocity = Vector3.zero;
-        if (tPlayer.localScale.x == 1 && pegado)
+
+        if (energia.energiaPower >= 5)
         {
-          
-            GameObject novoObjeto = Instantiate(prefabObe, posicaoDeLanca.position, Quaternion.identity);
-            Rigidbody2D rbNovo = novoObjeto.GetComponent<Rigidbody2D>();
-            rbNovo.AddForce(Vector2.right * forca);
-            pegado = false;
-            StartCoroutine(Recarregar());
+            if (tPlayer.localScale.x == 1 && pegado)
+            {
+                GameObject novoObjeto = Instantiate(prefabObe, posicaoDeLanca.position, Quaternion.identity);
+                Rigidbody2D rbNovo = novoObjeto.GetComponent<Rigidbody2D>();
+                rbNovo.AddForce(Vector2.right * forca);
+                pegado = false;
+                StartCoroutine(Recarregar());
+                energia.energiaPower -= 5;
+            }
+
+            if (tPlayer.localScale.x == -1 && pegado)
+            {
+                GameObject novoObjeto = Instantiate(prefabObe, posicaoDeLanca.position, Quaternion.identity);
+                Rigidbody2D rbNovo = novoObjeto.GetComponent<Rigidbody2D>();
+                rbNovo.AddForce(Vector2.left * forca);
+                pegado = false;
+                StartCoroutine(Recarregar());
+                energia.energiaPower -= 5;
+            }
         }
 
-        if (tPlayer.localScale.x == -1 && pegado)
-        {
-            GameObject novoObjeto = Instantiate(prefabObe, posicaoDeLanca.position, Quaternion.identity);
-            Rigidbody2D rbNovo = novoObjeto.GetComponent<Rigidbody2D>();
-            rbNovo.AddForce(Vector2.left * forca);
-            pegado = false;
-            StartCoroutine(Recarregar());
-        }
+       
        
         // Se quiser permitir lançar de novo depois de um tempo:
     

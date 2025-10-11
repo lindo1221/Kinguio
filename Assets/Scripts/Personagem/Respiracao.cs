@@ -16,6 +16,8 @@ public class Respiracao : MonoBehaviour
     public float tempoMortal = 3f;
     public bool semAr = false;
 
+
+
     public GameObject painelAr;
 
     private void Start()
@@ -28,7 +30,7 @@ public class Respiracao : MonoBehaviour
         Ar();
         Sufocar();
         temporizador();
-        
+      
     }
 
     public void Ar()
@@ -36,14 +38,12 @@ public class Respiracao : MonoBehaviour
         for (int i = 0; i < Ars.Length; i++)
         {
             if (i < ar)
-            {
-                Ars[i].sprite = cheioAr;
+            {                           
+              Ars[i].sprite = cheioAr;                       
             }
             else
             {
                 Ars[i].sprite = vazioAr;
-
-
             }
             if (i < arMaximo)
             {
@@ -69,6 +69,7 @@ public class Respiracao : MonoBehaviour
        
     
     }
+   
     public void Sufocar()
     {
         if (temposem <= 0) 
@@ -79,7 +80,7 @@ public class Respiracao : MonoBehaviour
         if (ar <= 0 && tempoMortal <= 0)
         {
             heartSystem.vida--;
-           
+            heartSystem.piscar = true;
             tempoMortal = 3;
         }
     }

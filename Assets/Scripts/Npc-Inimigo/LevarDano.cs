@@ -5,6 +5,7 @@ using UnityEngine;
 public class LevarDano : MonoBehaviour
 {
     public int vida = 10;
+    public Energia energia;
     void Start()
     {
        
@@ -32,6 +33,7 @@ public class LevarDano : MonoBehaviour
     {
         if(vida <= 0) 
         {
+            energia.energiaPower += 10;
          Destroy(gameObject);
         }
     }
