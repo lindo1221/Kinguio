@@ -15,7 +15,8 @@ public class Respiracao : MonoBehaviour
     public float temposem = 3f;
     public float tempoMortal = 3f;
     public bool semAr = false;
-
+    public GameObject painel;
+    public Player player;
 
 
     public GameObject painelAr;
@@ -65,9 +66,7 @@ public class Respiracao : MonoBehaviour
         if(ar <= 0) 
         {
           tempoMortal -= Time.deltaTime;
-        }
-       
-    
+        }    
     }
    
     public void Sufocar()
@@ -82,6 +81,29 @@ public class Respiracao : MonoBehaviour
             heartSystem.vida--;
             heartSystem.piscar = true;
             tempoMortal = 3;
+        }
+    }
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("agua"))
+        {
+            painel.SetActive(true);
+            player.rg.drag = 0.4f;
+            semAr = true;
+            player.naAgua = true;
+        }
+    }
+    public void OnTriggerExit2D(Collider2D collision) 
+    {
+        if (collision.gameObject.CompareTag("agua"))
+        {
+            ar = arMaximo;
+            painel.SetActive(false);
+            semAr = false;
+            player.naAgua = false;
+            tempoMortal = 3f;
+            temposem = 3f;
+            heartSystem.piscar = false;
         }
     }
 }

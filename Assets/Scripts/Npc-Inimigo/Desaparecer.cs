@@ -5,27 +5,18 @@ using UnityEngine;
 public class Desaparecer : MonoBehaviour
 {
     public GameObject Poder;
-    public float tempo = 1.5f;
     void Start()
     {
-     
+        StartCoroutine(Recarregar());
     }
-
-    // Update is called once per frame
     void Update()
     {
-        timer();
+        
     }
-
-    public void timer() 
+    public IEnumerator Recarregar()
     {
-       tempo -= Time.deltaTime;
-
-        if(tempo <= 0) 
-        {
-            Object.Destroy(Poder);
-        }
+        yield return new WaitForSeconds(1f);
+        Destroy(Poder);
     }
 
-  
 }

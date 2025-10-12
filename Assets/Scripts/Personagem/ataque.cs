@@ -13,27 +13,20 @@ public class adesgracadoataque : MonoBehaviour
     public float cooldown = 0.5f;
     public bool estaemcool = true;
     public Transform ataqueposi;
-    public void ataqueTime()
+
+    public IEnumerator Neymar() 
     {
         if (atacou)
         {
-            tim -= Time.deltaTime;
-        }
-        if (estaemcool)
-        {
-            cooldown -= Time.deltaTime;
-        }
-        if (cooldown <= 0)
-        {
-            estaemcool = false;
-            cooldown = 0.5f;
-        }
-        if (tim <= 0)
-        {
+            yield return new WaitForSeconds(0.05f);
             ataques.size = new Vector2(0, 1);
             atacou = false;
-            tim = 0.05f;
-           
+        }
+        if (estaemcool) 
+        {
+            yield return new WaitForSeconds(0.5f);
+            estaemcool = false;
+            cooldown = 0.5f;
         }
     }
     public void pegarAposi() 
@@ -49,17 +42,16 @@ public class adesgracadoataque : MonoBehaviour
             ataques.size = new Vector2(2, 1);
             atacou = true;
             estaemcool = true;
+            StartCoroutine(Neymar());
         }
     }
     void Start()
     {
+        StartCoroutine(Neymar());
         ataques.size = new Vector2(0, 1);
         boxAtaque.SetActive(true);
-    }
-
-    // Update is called once per frame
+    }  
     void Update()
-    {
-        ataqueTime();
+    {      
     }
 }

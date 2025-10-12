@@ -6,7 +6,7 @@ public class Player : MonoBehaviour
 {
     public int pulo = 300;
     public float velocidade = 5;
-    Rigidbody2D rg;
+    public Rigidbody2D rg;
     Vector2 mover; // x e y
     bool ehchao = false;
     [Header("Check Chão")]
@@ -21,29 +21,14 @@ public class Player : MonoBehaviour
 
     private DialogueSystemnew dialogueSystem;
     private SpriteRenderer spriteRenderer;
-    public Transform npc;
-    public float knock = 50;
-
-    public float tempoRestante = 0.5f;
-    public bool acionado = false;
-
-    public bool podeEntrar = false;
-    public GameObject icone;
-
 
     public bool naAgua = false;
-    public Respiracao respirar;
-    public GameObject painel;
     public HeartSystem heartSystem;
-   
-
-    public bool antibugagua = true;
 
    
     void Start()
     {
-        icone.SetActive(false);
-       
+        
         rg = GetComponent<Rigidbody2D>();
     }
 
@@ -85,20 +70,11 @@ public class Player : MonoBehaviour
 
         rg.velocity = new Vector2(mover.x * velocidade, rg.velocity.y);
     }
-    public void OnEntrar(InputAction.CallbackContext context)
-    {
-        if (context.phase == InputActionPhase.Performed && podeEntrar)
-        {
-            SceneManager.LoadScene("Cabana");
-            podeEntrar = false;
-        }
-
-    }
+   
     public void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("chao"))
         {
-
             Djump = 2;
         }
         if (collision.gameObject.CompareTag("item"))
@@ -121,69 +97,15 @@ public class Player : MonoBehaviour
 
 
     }
-    public void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("entrar"))
-        {
-            icone.SetActive(true);
-            podeEntrar = true;
-        }       
-        if (collision.gameObject.CompareTag("agua"))
-        {
-           
-            painel.SetActive(true);
-            rg.drag = 0.4f;
-            respirar.semAr = true;
-            naAgua = true;
-        }
-    }
-    public void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("agua"))
-        {
-            respirar.ar = respirar.arMaximo;
-            painel.SetActive(false);
-            respirar.semAr = false;
-            naAgua = false;
-            respirar.tempoMortal = 3f;
-            respirar.temposem = 3f;
-           heartSystem.piscar = false;
-        }
-        if (collision.gameObject.CompareTag("entrar"))
-        {
-            icone.SetActive(false);
-            podeEntrar = false;
-        }
-
-    }
-    public void timerzin()
-    {
-        if (acionado)
-        {
-            if (tempoRestante > 0)
-            {
-                tempoRestante -= Time.deltaTime;
-            }
-            else
-            {
-                tempoRestante = 0.5f;
-                GetComponent<Player>().enabled = true;
-                acionado = false;
-            }
-        }
-
-    }
+   
     void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(checkChao.position, raioChao);
-
     }
     private void Awake()
     {
-
         dialogueSystem = FindObjectOfType<DialogueSystemnew>();
-
         spriteRenderer = GetComponent<SpriteRenderer>();
 
     }

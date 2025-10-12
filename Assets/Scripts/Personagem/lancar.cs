@@ -51,15 +51,11 @@ public class Lancar : MonoBehaviour
                 energia.energiaPower -= 5;
             }
         }
-
-       
-       
-        // Se quiser permitir lançar de novo depois de um tempo:
     
     }
     public IEnumerator Recarregar()
     {
-        yield return new WaitForSeconds(0.5f); // tempo de "recarregar"
+        yield return new WaitForSeconds(0.5f); 
         pegado = true;
     }
     public void pegarposi()

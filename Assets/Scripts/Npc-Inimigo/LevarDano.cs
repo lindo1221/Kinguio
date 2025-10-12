@@ -6,6 +6,7 @@ public class LevarDano : MonoBehaviour
 {
     public int vida = 10;
     public Energia energia;
+    public bool receberEenrgia = true;
     void Start()
     {
        
@@ -26,15 +27,28 @@ public class LevarDano : MonoBehaviour
         if (collision.gameObject.CompareTag("power"))
         {
             vida -= 5;
+            if (vida <= 0) 
+            {
+             receberEenrgia = false;
+            }
         }
     }
 
     public void Destroy()
     {
-        if(vida <= 0) 
+        if(vida <= 0 && receberEenrgia) 
         {
-            energia.energiaPower += 10;
+         energia.energiaPower += 10;
          Destroy(gameObject);
+         receberEenrgia=true;
         }
+        else if (vida <= 0 && !receberEenrgia) 
+        {
+          Destroy(gameObject);
+        }
+
+
+
     }
+
 }

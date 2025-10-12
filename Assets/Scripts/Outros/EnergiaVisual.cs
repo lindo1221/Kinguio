@@ -7,10 +7,9 @@ using UnityEngine.UI;
 public class EnergiaVisual : MonoBehaviour
 {
     public Image tenta;
-    public Transform Ele;
     public Energia energia;
     public float BarraTotal = 100;
-    
+    public Energia tafoda;
     void Start()
     {
        
