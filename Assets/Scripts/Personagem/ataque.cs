@@ -24,9 +24,8 @@ public class adesgracadoataque : MonoBehaviour
         }
         if (estaemcool) 
         {
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.3f);
             estaemcool = false;
-            cooldown = 0.5f;
         }
     }
     public void pegarAposi() 

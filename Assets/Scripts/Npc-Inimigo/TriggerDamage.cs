@@ -6,6 +6,9 @@ public class TriggerDamage : MonoBehaviour
 {
     public HeartSystem heart;
     public Player player;
+    public bool mortal = true;
+    public bool knockbavel = true;
+     
     void Start()
     {
         
@@ -18,11 +21,23 @@ public class TriggerDamage : MonoBehaviour
     }
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("player"))
+        if (mortal) 
         {
-            heart.vida--;
+            if (collision.gameObject.CompareTag("player"))
+            {
+                heart.vida--;
+                StartCoroutine(imortal());
+            }
         }
-      
-
+       
+    }
+    public IEnumerator imortal()
+    {
+        mortal = false;
+        yield return new WaitForSeconds(1f);
+        mortal = true;
+        knockbavel = false;
+        yield return new WaitForSeconds(0.5f);
+        knockbavel = true;
     }
 }

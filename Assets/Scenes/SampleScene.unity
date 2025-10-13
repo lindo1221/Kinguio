@@ -621,8 +621,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -162.0175, y: 170.5075}
-  m_SizeDelta: {x: 433.5605, y: 322.8774}
+  m_AnchoredPosition: {x: -149, y: 172}
+  m_SizeDelta: {x: 473.145, y: 322.8774}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &482622318
 MonoBehaviour:
@@ -826,7 +826,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.7, y: 3.7, z: -10}
+  m_LocalPosition: {x: -7.7, y: 3.1, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2251,6 +2251,7 @@ GameObject:
   - component: {fileID: 1314810744}
   - component: {fileID: 1314810746}
   - component: {fileID: 1314810745}
+  - component: {fileID: 1314810747}
   m_Layer: 0
   m_Name: Pancada
   m_TagString: inimigo
@@ -2354,10 +2355,10 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.23141694}
+  m_Offset: {x: 0.044944763, y: -0.1639967}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -2368,7 +2369,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1.4628339}
+  m_Size: {x: 1.3595734, y: 1.5976744}
   m_EdgeRadius: 0
 --- !u!114 &1314810744
 MonoBehaviour:
@@ -2382,9 +2383,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5a449727b1bbe94f93ea379d4d68e62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mover: {fileID: 1314810746}
   vida: 10
   energia: {fileID: 2129491259}
   receberEenrgia: 1
+  inimigo: {fileID: 1314810746}
 --- !u!50 &1314810745
 Rigidbody2D:
   serializedVersion: 4
@@ -2426,6 +2429,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rg: {fileID: 1314810745}
   velocidade: 2
+  bCollider: {fileID: 1314810743}
+--- !u!114 &1314810747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1314810740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bdbf33372e323e41b7ff573a79f3d58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heart: {fileID: 2129491253}
+  player: {fileID: 2129491256}
+  mortal: 1
+  knockbavel: 1
 --- !u!1 &1418911525
 GameObject:
   m_ObjectHideFlags: 0
@@ -3353,8 +3373,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -334.8503, y: 277.70004}
-  m_SizeDelta: {x: 237.776, y: 30.4743}
+  m_AnchoredPosition: {x: -325, y: 277.70004}
+  m_SizeDelta: {x: 257.7581, y: 30.4743}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1965020051
 MonoBehaviour:
@@ -3622,7 +3642,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -399.23837, y: 195.97751}
+  m_AnchoredPosition: {x: -394, y: 197}
   m_SizeDelta: {x: -236.28342, y: 46.7166}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2098981731
@@ -3686,6 +3706,7 @@ GameObject:
   - component: {fileID: 2129491258}
   - component: {fileID: 2129491259}
   - component: {fileID: 2129491260}
+  - component: {fileID: 2129491261}
   m_Layer: 0
   m_Name: Player
   m_TagString: player
@@ -3754,7 +3775,7 @@ Transform:
   m_GameObject: {fileID: 2129491243}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.008874389, z: -0, w: 0.99996066}
-  m_LocalPosition: {x: -8.7, y: -2.3, z: 0}
+  m_LocalPosition: {x: -7.7, y: -2.9, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4007,9 +4028,6 @@ MonoBehaviour:
   - {fileID: 614685406}
   cheio: {fileID: 21300000, guid: 403b85b9de7aa1844af6c37a57774f98, type: 3}
   vazio: {fileID: 21300000, guid: 6903b322b3d9f1f43ad634cfc0b1d7c3, type: 3}
-  piscar: 0
-  tempoPiscaOff: 0.3
-  tempoPiscaOn: 0.5
 --- !u!70 &2129491254
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -4089,7 +4107,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pulo: 300
   velocidade: 5
-  rg: {fileID: 0}
+  rg: {fileID: 2129491247}
   checkChao: {fileID: 177487535}
   raioChao: 0.2
   oQueEChao:
@@ -4101,6 +4119,10 @@ MonoBehaviour:
   points: 0
   naAgua: 0
   heartSystem: {fileID: 2129491253}
+  knock: {fileID: 2129491261}
+  transform1: {fileID: 0}
+  KnockForce: 50
+  box: {fileID: 2129491246}
 --- !u!114 &2129491257
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4117,7 +4139,7 @@ MonoBehaviour:
   tim: 0.05
   atacou: 0
   boxAtaque: {fileID: 825042080}
-  cooldown: 0.5
+  cooldown: 0.3
   estaemcool: 1
   ataqueposi: {fileID: 1420453812}
 --- !u!114 &2129491258
@@ -4151,7 +4173,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b14ca16b17a2db49be48b1dfc4bb011, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  energiaPower: 0
+  energiaPower: 5
 --- !u!114 &2129491260
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4166,6 +4188,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icone: {fileID: 197061446}
   podeEntrar: 0
+--- !u!114 &2129491261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2129491243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b46fdca607e0fdb4bb6842c72237b115, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dano: {fileID: 1314810747}
+  rb: {fileID: 2129491247}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

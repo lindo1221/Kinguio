@@ -25,10 +25,15 @@ public class Player : MonoBehaviour
     public bool naAgua = false;
     public HeartSystem heartSystem;
 
+    public Knock knock;
+    public Transform transform1;
+    public float KnockForce = 50;
+
+    public BoxCollider2D box;
    
     void Start()
     {
-        
+       
         rg = GetComponent<Rigidbody2D>();
     }
 
@@ -85,11 +90,7 @@ public class Player : MonoBehaviour
             pegado = true;
 
         }
-        if (collision.gameObject.CompareTag("inimigo"))
-        {
-
-
-        }
+     
         if (collision.gameObject.CompareTag("sair"))
         {
             SceneManager.LoadScene("SampleScene");

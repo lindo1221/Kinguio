@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Mover : MonoBehaviour
+public class Inimigo : MonoBehaviour
 {
+   
     public Rigidbody2D rg;
     public float velocidade = 0;
+    public BoxCollider2D bCollider;
     void Start()
     {
         rg = GetComponent<Rigidbody2D>();
@@ -25,4 +27,5 @@ public class Mover : MonoBehaviour
             rg.transform.localScale = new Vector2(-1 * rg.transform.localScale.x, rg.transform.localScale.y);
         }
     }
+   
 }

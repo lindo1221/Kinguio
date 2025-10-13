@@ -4,9 +4,9 @@ using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Botao : MonoBehaviour
+public class BotaoCreditos : MonoBehaviour
 {
-   
+    // Start is called before the first frame update
     void Start()
     {
         
@@ -17,13 +17,9 @@ public class Botao : MonoBehaviour
     {
         
     }
-    public void Play() 
+    public void SairCres() 
     {
-        SceneManager.LoadScene("SampleScene");
-
-    }
-    public void credits() 
-    {
-        SceneManager.LoadScene("Creditos");
+        SceneManager.LoadScene("Menu");
+    
     }
 }

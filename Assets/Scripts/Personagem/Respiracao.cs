@@ -78,8 +78,7 @@ public class Respiracao : MonoBehaviour
         }
         if (ar <= 0 && tempoMortal <= 0)
         {
-            heartSystem.vida--;
-            heartSystem.piscar = true;
+            heartSystem.vida--;         
             tempoMortal = 3;
         }
     }
@@ -102,8 +101,7 @@ public class Respiracao : MonoBehaviour
             semAr = false;
             player.naAgua = false;
             tempoMortal = 3f;
-            temposem = 3f;
-            heartSystem.piscar = false;
+            temposem = 3f;       
         }
     }
 }

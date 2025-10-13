@@ -13,15 +13,10 @@ public class HeartSystem : MonoBehaviour
     public Sprite cheio;
     public Sprite vazio;
 
-    public bool piscar = false;
-    public float tempoPiscaOff = 0.3f;
-    public float tempoPiscaOn = 1;
-
     void Update()
     {
         HealthLogic();
-        DeadState();
-        piscaHearty();
+        DeadState(); 
     }
 
     public void HealthLogic()
@@ -47,26 +42,12 @@ public class HeartSystem : MonoBehaviour
           
         }
     }
-    public void piscaHearty()
-    {
-        if (piscar)
-        {
-            tempoPiscaOn -= Time.deltaTime;
-            tempoPiscaOff = 0.5f;
-        }
-        if (tempoPiscaOff < 0)
-        {
-            tempoPiscaOff -= Time.deltaTime;
-            tempoPiscaOn = 0.3f;
-        }
-
-    }
     public void DeadState()
     {
         if (vida <= 0)
         {
-            GetComponent<Player>().enabled = false; // verificar esse PlayerLogic
-            Destroy(gameObject, 3.0f); //colocar esse método dentro do update
+            GetComponent<Player>().enabled = false; 
+            Destroy(gameObject, 3.0f);
 
         }
     }
