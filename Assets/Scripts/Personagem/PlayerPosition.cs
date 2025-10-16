@@ -4,19 +4,17 @@ using UnityEngine;
 
 public class PlayerPosition : MonoBehaviour
 {
-        public Transform player; // arraste o Player aqui no Inspector
+        public Transform player;
         public Vector3 posicaoPlayer;
+        public Transform cenario;
+
     void Update()
     {
-            // Sempre pega a posição atual do player
             posicaoPlayer = player.position;
-
-            // Se quiser acessar cada eixo:
             float px = posicaoPlayer.x;
             float py = posicaoPlayer.y;
             float pz = posicaoPlayer.z;
-
-           
+            cenario.position = new Vector3(px, cenario.position.y, 0);
     }
 
 }

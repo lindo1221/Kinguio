@@ -15,7 +15,7 @@ public class Abelha : MonoBehaviour
     public bool useRigidbody = true;
     public bool visualizeArea = true;
 
-    private Rigidbody2D rb;
+    public Rigidbody2D rb;
     private float direction = 1f;
 
     private float leftBound, rightBound, minY, maxY;

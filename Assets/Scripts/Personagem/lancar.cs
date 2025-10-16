@@ -9,7 +9,7 @@ public class Lancar : MonoBehaviour
     public GameObject prefabObe;
   
     public Rigidbody2D rbitem;
-    public int forca = 900;
+    public int forca = 700;
     public Transform posicaoDeLanca;
     public Transform tPlayer;
     public Energia energia;

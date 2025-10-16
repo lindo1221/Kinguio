@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
-    public int pulo = 300;
+    public int pulo = 350;
     public float velocidade = 5;
     public Rigidbody2D rg;
     Vector2 mover; // x e y
@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
     public float raioChao = 0.2f;
     public LayerMask oQueEChao;
     public bool noChao;
-    public int Djump = 2;
+    public bool Djump = true;
 
     public bool pegado = false;
     public int points = 0;
@@ -57,10 +57,17 @@ public class Player : MonoBehaviour
     public void OnPular(InputAction.CallbackContext context)
     {
 
-        if (context.phase == InputActionPhase.Performed && noChao || context.phase == InputActionPhase.Performed && Djump <= 1)
+        if (context.phase == InputActionPhase.Performed && noChao)
         {
+            
             rg.AddForce(Vector2.up * pulo);
-            Djump++;
+            Djump = true;
+        }
+        else if(context.phase == InputActionPhase.Performed && Djump)
+        {
+            rg.velocity = Vector2.zero;
+            rg.AddForce(Vector2.up * pulo);
+            Djump = false;
         }
         if (context.phase == InputActionPhase.Performed && naAgua)
         {
@@ -80,7 +87,7 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("chao"))
         {
-            Djump = 2;
+            Djump = true;
         }
         if (collision.gameObject.CompareTag("item"))
         {
