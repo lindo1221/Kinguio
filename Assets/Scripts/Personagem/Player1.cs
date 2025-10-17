@@ -30,11 +30,16 @@ public class Player : MonoBehaviour
     public float KnockForce = 50;
 
     public BoxCollider2D box;
+
+
+    [SerializeField] public Animator animator;
    
     void Start()
     {
        
         rg = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+        
     }
 
     // Update is called once per frame
@@ -46,17 +51,22 @@ public class Player : MonoBehaviour
         {
             transform.localScale = new Vector3(Mathf.Sign(mover.x), 1, 1);
         }
-       
+        if (mover.x != 0) animator.SetBool("IsRunning", true);
+
+        else animator.SetBool("IsRunning", false);
+
 
     }
 
     public void OnMove(InputAction.CallbackContext context)
     {
         mover = context.ReadValue<Vector2>();
+       
+
     }
     public void OnPular(InputAction.CallbackContext context)
     {
-
+        animator.SetBool("IsJump", true);
         if (context.phase == InputActionPhase.Performed && noChao)
         {
             
@@ -87,6 +97,7 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("chao"))
         {
+            animator.SetBool("IsJump", false);
             Djump = true;
         }
         if (collision.gameObject.CompareTag("item"))

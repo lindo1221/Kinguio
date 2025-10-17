@@ -32,7 +32,7 @@ public class LevarDano : MonoBehaviour
         {
             vida -= 5;
             Knockback(collision, 2000);
-            StartCoroutine(imortal());
+            
             if (vida <= 0) 
             {
               receberEenrgia = false;

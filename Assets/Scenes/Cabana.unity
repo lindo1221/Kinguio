@@ -229,7 +229,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 4.85617
+  orthographic size: 4.8038898
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -869,7 +869,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 30.080576, y: 117.81538}
+  m_AnchoredPosition: {x: 14.97125, y: 113.42963}
   m_SizeDelta: {x: 293.848, y: 122.097}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &946211982
@@ -1081,7 +1081,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -47.088734, y: 152.90564}
+  m_AnchoredPosition: {x: -47.98501, y: 149.75061}
   m_SizeDelta: {x: 242.188, y: 85.094}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1033046116
@@ -3563,6 +3563,7 @@ MonoBehaviour:
   transform1: {fileID: 0}
   KnockForce: 50
   box: {fileID: 0}
+  animator: {fileID: 0}
 --- !u!70 &1991422399
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -4020,7 +4021,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -334.8503, y: 277.70004}
+  m_AnchoredPosition: {x: -336.0679, y: 284.95462}
   m_SizeDelta: {x: 237.776, y: 30.4743}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &2038312716
