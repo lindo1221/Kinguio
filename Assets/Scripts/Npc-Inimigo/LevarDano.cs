@@ -25,13 +25,13 @@ public class LevarDano : MonoBehaviour
         if (collision.gameObject.CompareTag("ataque")) 
         {
             vida--;
-            Knockback(collision , 2000);
+            Knockback(collision , 4);
         }
        
         if (collision.gameObject.CompareTag("power"))
         {
             vida -= 5;
-            Knockback(collision, 2000);
+            Knockback(collision, 6);
             
             if (vida <= 0) 
             {
@@ -43,21 +43,24 @@ public class LevarDano : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("player"))
         {
-            Knockback(collision.collider, 1200);
+            Knockback(collision.collider, 4);
         }
     }
     public void Knockback(Collider2D collision, float forca) 
-    {       
+    {
+        mover.StartCoroutine(mover.sla());
             Transform iniT = collision.transform;
             if (mover.rg.transform.position.x < iniT.position.x)
             {
                 mover.rg.velocity = Vector3.zero;
-                mover.rg.AddForce(Vector2.left.normalized * forca, ForceMode2D.Force);
+                mover.rg.AddForce(Vector2.left.normalized * forca, ForceMode2D.Impulse);
+                mover.rg.AddForce(Vector2.up.normalized * 3, ForceMode2D.Impulse);
             }
             else
             {
+               mover.rg.AddForce(Vector2.up.normalized * 3, ForceMode2D.Impulse);
                mover.rg.velocity = Vector3.zero;
-               mover.rg.AddForce(Vector2.right.normalized * forca);
+               mover.rg.AddForce(Vector2.right.normalized * forca, ForceMode2D.Impulse);
             }        
     }
     public void Destroy()
@@ -73,10 +76,5 @@ public class LevarDano : MonoBehaviour
           Destroy(gameObject);
         }
     }
-    public IEnumerator imortal() 
-    {   Vector2 ori = new Vector2(inimigo.bCollider.size.x, inimigo.bCollider.size.y);
-        inimigo.bCollider.size = new Vector2(0, 0);
-        yield return new WaitForSeconds(0.2f);
-        inimigo.bCollider.size = ori;
-    }
+   
 }

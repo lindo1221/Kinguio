@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PowerUp : MonoBehaviour
 {
+    public bool pegado = false;
     public int points = 0;
     public Player player;
     void Start()
@@ -18,8 +19,13 @@ public class PowerUp : MonoBehaviour
     }
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        if (collision.gameObject.CompareTag("item"))
+        {
+            points++;
+            Destroy(collision.gameObject);
+            pegado = true;
 
+        }
     }
-   
+
 }

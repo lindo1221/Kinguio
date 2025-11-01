@@ -15,9 +15,8 @@ public class Respiracao : MonoBehaviour
     public float temposem = 3f;
     public float tempoMortal = 3f;
     public bool semAr = false;
-    public GameObject painel;
     public Player player;
-
+    public bool naAgua = false;
 
     public GameObject painelAr;
 
@@ -86,10 +85,10 @@ public class Respiracao : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("agua"))
         {
-            painel.SetActive(true);
+            painelAr.SetActive(true);
             player.rg.drag = 0.4f;
             semAr = true;
-            player.naAgua = true;
+            naAgua = true;
         }
     }
     public void OnTriggerExit2D(Collider2D collision) 
@@ -97,9 +96,9 @@ public class Respiracao : MonoBehaviour
         if (collision.gameObject.CompareTag("agua"))
         {
             ar = arMaximo;
-            painel.SetActive(false);
+            painelAr.SetActive(false);
             semAr = false;
-            player.naAgua = false;
+            naAgua = false;
             tempoMortal = 3f;
             temposem = 3f;       
         }

@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Menu.unity
     guid: 2675ca900ddd3e841a184211e24b0a95
+  - enabled: 1
+    path: Assets/Scenes/Praia.unity
+    guid: 849a6a70598e45044b285451adf619bd
   m_configObjects: {}

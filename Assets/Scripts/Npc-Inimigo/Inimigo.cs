@@ -8,14 +8,17 @@ public class Inimigo : MonoBehaviour
     public Rigidbody2D rg;
     public float velocidade = 0;
     public BoxCollider2D bCollider;
+    public bool isGrounded = true;
+    public bool primeirotoque = true;
     void Start()
     {
         rg = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
+        if (isGrounded)
         rg.velocity = new Vector2(velocidade, rg.velocity.y);
     }
 
@@ -23,9 +26,17 @@ public class Inimigo : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("virar")) 
         {
-            velocidade *= -1;
-            rg.transform.localScale = new Vector2(-1 * rg.transform.localScale.x, rg.transform.localScale.y);
+             velocidade *= -1;
+             rg.transform.localScale = new Vector2(-1 * rg.transform.localScale.x, rg.transform.localScale.y);
+             primeirotoque = false;        
         }
     }
+    public IEnumerator sla() 
+    {
+        isGrounded = false;
+        yield return new WaitForSeconds(0.3f);
+        isGrounded = true;
+    }
    
+    
 }

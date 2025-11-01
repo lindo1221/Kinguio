@@ -18,5 +18,16 @@ public class Desaparecer : MonoBehaviour
         yield return new WaitForSeconds(1f);
         Destroy(Poder);
     }
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision)
+        {
+            destrui();
+        }
+    }
+    public void destrui()
+    {     
+        Destroy(Poder);
+    }
 
 }

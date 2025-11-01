@@ -15,6 +15,7 @@ TagManager:
   - ataque
   - power
   - virar
+  - ataquebaixo
   layers:
   - Default
   - TransparentFX

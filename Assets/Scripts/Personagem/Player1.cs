@@ -1,6 +1,7 @@
 using UnityEngine.InputSystem;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class Player : MonoBehaviour
 {
@@ -16,21 +17,13 @@ public class Player : MonoBehaviour
     public bool noChao;
     public bool Djump = true;
 
-    public bool pegado = false;
-    public int points = 0;
-
     private DialogueSystemnew dialogueSystem;
     private SpriteRenderer spriteRenderer;
 
-    public bool naAgua = false;
+    Respiracao Respiracao;
     public HeartSystem heartSystem;
-
-    public Knock knock;
-    public Transform transform1;
-    public float KnockForce = 50;
-
-    public BoxCollider2D box;
-
+ 
+    bool ativar = true;
 
     [SerializeField] public Animator animator;
    
@@ -79,7 +72,7 @@ public class Player : MonoBehaviour
             rg.AddForce(Vector2.up * pulo);
             Djump = false;
         }
-        if (context.phase == InputActionPhase.Performed && naAgua)
+        if (context.phase == InputActionPhase.Performed && Respiracao.naAgua)
         {
             int nado = 100;
             rg.AddForce(Vector2.up * nado);
@@ -89,7 +82,7 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
-
+        if (ativar)
         rg.velocity = new Vector2(mover.x * velocidade, rg.velocity.y);
     }
    
@@ -100,15 +93,6 @@ public class Player : MonoBehaviour
             animator.SetBool("IsJump", false);
             Djump = true;
         }
-        if (collision.gameObject.CompareTag("item"))
-        {
-
-            points++;
-            Destroy(collision.gameObject);
-            pegado = true;
-
-        }
-     
         if (collision.gameObject.CompareTag("sair"))
         {
             SceneManager.LoadScene("SampleScene");
@@ -128,6 +112,13 @@ public class Player : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
 
     }
+   
 
+    public IEnumerator Desativar() 
+    {
+        ativar = false;
+        yield return new WaitForSeconds(0.2f);
+        ativar = true;
+    }
 
 }

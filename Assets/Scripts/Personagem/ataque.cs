@@ -12,9 +12,10 @@ public class adesgracadoataque : MonoBehaviour
     public GameObject boxAtaque;
     public float cooldown = 0.5f;
     public bool estaemcool = true;
-    public Transform ataqueposi;
+    public Knock knock;
+    public bool teste;
 
-    public IEnumerator Neymar() 
+    public IEnumerator Configs()
     {
         if (atacou)
         {
@@ -22,35 +23,48 @@ public class adesgracadoataque : MonoBehaviour
             ataques.size = new Vector2(0, 1);
             atacou = false;
         }
-        if (estaemcool) 
+        if (estaemcool)
         {
-            yield return new WaitForSeconds(0.3f);
+            yield return new WaitForSeconds(0.25f);
             estaemcool = false;
         }
     }
-    public void pegarAposi() 
-    {
-       ataques.transform.position = ataqueposi.position;
-    
-    }
     public void OnAtacar(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Performed && estaemcool == false)
+        var Down = Keyboard.current.downArrowKey.isPressed;
+        var up = Keyboard.current.upArrowKey.isPressed;
+        if (context.phase == InputActionPhase.Performed && estaemcool == false && up)
         {
-            pegarAposi();
-            ataques.size = new Vector2(2, 1);
-            atacou = true;
-            estaemcool = true;
-            StartCoroutine(Neymar());
+            ataque(1f, 3f);
+            ataques.offset = new Vector2(-0.2f, 1);
         }
+        else if (context.phase == InputActionPhase.Performed && estaemcool == false && Down)
+        {
+            ataque(1f, 3f);
+            ataques.offset = new Vector2(-0.2f, -1f);
+        }
+        else if (context.phase == InputActionPhase.Performed && estaemcool == false)
+        {
+            ataque(3f, 1f);
+            ataques.offset = new Vector2(0.6f, 0);
+        }
+    
     }
     void Start()
     {
-        StartCoroutine(Neymar());
+        StartCoroutine(Configs());
         ataques.size = new Vector2(0, 1);
         boxAtaque.SetActive(true);
     }  
     void Update()
     {      
+    }
+    
+    public void ataque(float x, float y) 
+    {
+        ataques.size = new Vector2(x, y);
+        atacou = true;
+        estaemcool = true;
+        StartCoroutine(Configs());
     }
 }

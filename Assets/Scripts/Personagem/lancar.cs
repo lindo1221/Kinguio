@@ -16,6 +16,7 @@ public class Lancar : MonoBehaviour
     void Start()
     {
         prefabObe.SetActive(true);
+       
     }
 
     // Update is called once per frame
@@ -28,7 +29,7 @@ public class Lancar : MonoBehaviour
     {
         pegarposi();
         rbitem.velocity = Vector3.zero;
-
+       
         if (energia.energiaPower >= 5)
         {
             if (tPlayer.localScale.x == 1 && pegado)
@@ -53,6 +54,7 @@ public class Lancar : MonoBehaviour
         }
     
     }
+   
     public IEnumerator Recarregar()
     {
         yield return new WaitForSeconds(0.5f); 
