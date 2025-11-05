@@ -72,12 +72,12 @@ public class Player : MonoBehaviour
             rg.AddForce(Vector2.up * pulo);
             Djump = false;
         }
-        if (context.phase == InputActionPhase.Performed && Respiracao.naAgua)
-        {
-            int nado = 100;
-            rg.AddForce(Vector2.up * nado);
+        //else if (context.phase == InputActionPhase.Performed && Respiracao.naAgua)
+        //{
+        //    int nado = 100;
+        //    rg.AddForce(Vector2.up * nado);
 
-        }
+        //}
     }
 
     void FixedUpdate()

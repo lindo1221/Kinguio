@@ -22393,6 +22393,8 @@ MonoBehaviour:
   inimigos:
   - {fileID: 3071598245046417235, guid: c63103d3169035c4e827aea87e623f78, type: 3}
   - {fileID: 3071598245046417235, guid: d6671a9b66da1f34690af0dad7523174, type: 3}
+  posi: {fileID: 0}
+  soumakrlh: 1
 --- !u!4 &945674743
 Transform:
   m_ObjectHideFlags: 0

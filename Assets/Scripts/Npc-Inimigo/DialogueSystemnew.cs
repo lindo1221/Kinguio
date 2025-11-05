@@ -22,6 +22,13 @@ public class DialogueSystemnew : MonoBehaviour
     private bool readyToSpeak = false;
     private bool isTalking = false;
     private Coroutine typingCoroutine;
+    public bool multiFim = false;
+
+    public GameObject simOuNao;
+
+    public GameObject[] sumirDuranteDialogo;
+
+    
 
     void Start()
     {
@@ -36,10 +43,12 @@ public class DialogueSystemnew : MonoBehaviour
             if (!isTalking)
             {
                 StartDialogue();
+
             }
             else
             {
                 NextDialogue();
+
             }
         }
     }
@@ -51,7 +60,11 @@ public class DialogueSystemnew : MonoBehaviour
 
         dialoguePanel.SetActive(true);
         nameText.text = NameNpc[dialogueIndex];
-
+        for (int i = 0; i < sumirDuranteDialogo.Length; i++) 
+        {
+            if (sumirDuranteDialogo != null)
+                sumirDuranteDialogo[i].SetActive(false);
+        }
 
         ShowDialogue();
     }
@@ -65,7 +78,15 @@ public class DialogueSystemnew : MonoBehaviour
         }
         else
         {
-            EndDialogue();
+            if (multiFim)
+            {
+                simOuNao.active = true;
+            }
+            else 
+            {
+                EndDialogue();
+            }
+           
         }
         if (dialogueIndex < NameNpc.Length)
             nameText.text = NameNpc[dialogueIndex];
@@ -75,7 +96,6 @@ public class DialogueSystemnew : MonoBehaviour
 
     void ShowDialogue()
     {
-        // Se já estava escrevendo, cancela e mostra a frase inteira
         if (typingCoroutine != null)
         {
             StopCoroutine(typingCoroutine);
@@ -97,11 +117,20 @@ public class DialogueSystemnew : MonoBehaviour
         typingCoroutine = null;
     }
 
-    void EndDialogue()
-    {
+   public void EndDialogue()
+    {       
         dialoguePanel.SetActive(false);
+
+        if (simOuNao != null)
+            simOuNao.SetActive(false);
+
         isTalking = false;
         dialogueIndex = 0;
+        for (int i = 0; i < sumirDuranteDialogo.Length; i++)
+        {
+            if(sumirDuranteDialogo != null)
+            sumirDuranteDialogo[i].SetActive(true);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

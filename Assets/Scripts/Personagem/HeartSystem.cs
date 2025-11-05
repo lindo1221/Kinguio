@@ -16,7 +16,12 @@ public class HeartSystem : MonoBehaviour
     void Update()
     {
         HealthLogic();
-        DeadState(); 
+        DeadState();
+
+        if (vida >= vidaMaxima) 
+        {
+          vida = vidaMaxima;
+        }
     }
 
     public void HealthLogic()
