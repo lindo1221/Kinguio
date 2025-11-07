@@ -10,6 +10,8 @@ public class Dash : MonoBehaviour
     public bool estaemcool = false;
     public TrailRenderer tr;
 
+    public bool temOColar = false;
+
     public Color color;
     void Start()
     {
@@ -23,23 +25,25 @@ public class Dash : MonoBehaviour
     }
     public void OnDash(InputAction.CallbackContext context)
     {
-        direcao = player.transform.localScale.x;
-        player.StartCoroutine(player.Desativar());
-
-        if (estaemcool == false && context.phase == InputActionPhase.Performed)
+        if (temOColar)
         {
-            StartCoroutine(Cooldown());
-            if (context.phase == InputActionPhase.Performed && direcao >= 1)
-            {
-                player.rg.AddForce(Vector2.right * 10, ForceMode2D.Impulse);
-            }
-            else if (context.phase == InputActionPhase.Performed)
-            {
-                player.rg.AddForce(Vector2.left * 10, ForceMode2D.Impulse);
-            }
-            StartCoroutine(Animacao());
-        }
+            direcao = player.transform.localScale.x;
+            player.StartCoroutine(player.Desativar());
 
+            if (estaemcool == false && context.phase == InputActionPhase.Performed)
+            {
+                StartCoroutine(Cooldown());
+                if (context.phase == InputActionPhase.Performed && direcao >= 1)
+                {
+                    player.rg.AddForce(Vector2.right * 23, ForceMode2D.Impulse);
+                }
+                else if (context.phase == InputActionPhase.Performed)
+                {
+                    player.rg.AddForce(Vector2.left * 23, ForceMode2D.Impulse);
+                }
+                StartCoroutine(Animacao());
+            }
+        }
 
     }
     public IEnumerator Animacao() 

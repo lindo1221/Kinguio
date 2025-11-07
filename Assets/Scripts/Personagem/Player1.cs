@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
     public float raioChao = 0.2f;
     public LayerMask oQueEChao;
     public bool noChao;
-    public bool Djump = true;
+    public bool Djump = true; 
 
     private DialogueSystemnew dialogueSystem;
     private SpriteRenderer spriteRenderer;
@@ -24,6 +24,7 @@ public class Player : MonoBehaviour
     public HeartSystem heartSystem;
  
     bool ativar = true;
+    
 
     [SerializeField] public Animator animator;
    
@@ -61,14 +62,13 @@ public class Player : MonoBehaviour
     {
         animator.SetBool("IsJump", true);
         if (context.phase == InputActionPhase.Performed && noChao)
-        {
-            
+        {       
             rg.AddForce(Vector2.up * pulo);
             Djump = true;
         }
         else if(context.phase == InputActionPhase.Performed && Djump)
         {
-            rg.velocity = Vector2.zero;
+            
             rg.AddForce(Vector2.up * pulo);
             Djump = false;
         }

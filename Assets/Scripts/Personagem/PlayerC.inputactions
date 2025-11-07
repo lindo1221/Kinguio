@@ -76,6 +76,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "AbrirEFecharMapa",
+                    "type": "Button",
+                    "id": "e40e747c-4d93-4ac9-a8dd-1c13a7b16c51",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -219,6 +228,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5d8d8af2-ce4f-4b56-bb5d-4fc7ee86d57c",
+                    "path": "<Keyboard>/m",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AbrirEFecharMapa",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -13,14 +14,19 @@ public class LojaBotoes : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 	public int valor;
 	public TextMeshProUGUI texto;
 	public Image coração;
-
+	public GameObject vidaMinima;
 	public HeartSystem heart;
-
 	public bool jaFoiComprado = false;
-	void Start()
+	public string nomeDoItem;
+
+    public Mapa mapa;
+	public Dash dash;
+
+
+    void Start()
 	{
-		ColorBlock cB = LojaBotoesButton.colors;
-	}
+        ColorBlock cB = LojaBotoesButton.colors;
+    }
 
 	// Update is called once per frame
 	void Update()
@@ -47,7 +53,34 @@ public class LojaBotoes : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 	}
 	public void OnClick() 
 	{
-	   if(jaFoiComprado == false)
-	   heart.vidaMaxima -= valor; jaFoiComprado = true;
-	}
+       
+        if (jaFoiComprado == false)
+		{
+			if (heart.vidaMaxima - valor < 5)
+			{
+				StartCoroutine(sumirAviso());
+			}
+			else
+			{
+				heart.vidaMaxima -= valor; jaFoiComprado = true;
+                if (nomeDoItem != null)
+                {
+                    switch (nomeDoItem)
+                    {
+                        case "Mapa":
+                            mapa.possuiMapa = true; break;
+                        case "Colar":
+                            dash.temOColar = true; break;
+                    }
+                }
+            }
+        }
+    }
+
+	public IEnumerator sumirAviso() 
+	{
+        vidaMinima.SetActive(true);
+		yield return new WaitForSeconds(3f);
+        vidaMinima.SetActive(false);
+    }
 }

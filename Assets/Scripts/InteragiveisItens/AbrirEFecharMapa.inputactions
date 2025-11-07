@@ -1,0 +1,34 @@
+{
+    "name": "AbrirEFecharMapa",
+    "maps": [
+        {
+            "name": "AbrirEfecharMapas",
+            "id": "7ca51219-cded-4e29-81f7-e2df3383c922",
+            "actions": [
+                {
+                    "name": "AbrirEFechar",
+                    "type": "Button",
+                    "id": "95321f5e-ea3f-4e7d-8db1-115697d60d0a",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "4721cbec-a4b3-474d-a454-3ec807e7534d",
+                    "path": "<Keyboard>/m",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AbrirEFechar",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
