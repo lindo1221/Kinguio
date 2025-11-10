@@ -16,6 +16,8 @@ TagManager:
   - power
   - virar
   - ataquebaixo
+  - EscadaS
+  - EscadaD
   layers:
   - Default
   - TransparentFX

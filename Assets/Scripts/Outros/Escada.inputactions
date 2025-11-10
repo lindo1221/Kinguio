@@ -1,0 +1,34 @@
+{
+    "name": "Escada",
+    "maps": [
+        {
+            "name": "Escada",
+            "id": "4a6c7a43-06a4-4630-8ae4-3f94052b7228",
+            "actions": [
+                {
+                    "name": "escada",
+                    "type": "Button",
+                    "id": "126fe6bc-cef1-4e80-9ee5-a16b132510f0",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "1769d98c-75e1-49bd-92d4-acd96aec55ef",
+                    "path": "<Keyboard>/p",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "escada",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

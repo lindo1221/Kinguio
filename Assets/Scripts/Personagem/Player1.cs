@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     Vector2 mover; // x e y
     bool ehchao = false;
     [Header("Check Chão")]
-    public Transform checkChao;
+    public CheckChao Checkchao;
     public float raioChao = 0.2f;
     public LayerMask oQueEChao;
     public bool noChao;
@@ -39,7 +39,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        noChao = Physics2D.OverlapCircle(checkChao.position, raioChao, oQueEChao);
+        noChao = Physics2D.OverlapCircle(Checkchao.checkChao.position, raioChao, oQueEChao);
 
         if (mover.x != 0)
         {
@@ -91,7 +91,6 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("chao"))
         {
             animator.SetBool("IsJump", false);
-            Djump = true;
         }
         if (collision.gameObject.CompareTag("sair"))
         {
@@ -104,7 +103,7 @@ public class Player : MonoBehaviour
     void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(checkChao.position, raioChao);
+        Gizmos.DrawWireSphere(Checkchao.checkChao.position, raioChao);
     }
     private void Awake()
     {
