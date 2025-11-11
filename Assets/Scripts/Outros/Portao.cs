@@ -5,12 +5,12 @@ using UnityEngine;
 public class Portao : MonoBehaviour
 {
     public GameObject tranca;
-    public bool temChave;
+    public bool temChave = false;
     public GameObject avisoTranca;
+    public Player player;
     void Start()
     {
         if(tranca != null)
-        tranca.SetActive(false);
         avisoTranca.SetActive(false);
 
     }
@@ -23,11 +23,12 @@ public class Portao : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision)
+        if(collision.gameObject.CompareTag("player"))
         {
             if (temChave)
             {
                 tranca.SetActive(true);
+                player.item.sprite = null;
             }
             else
             {

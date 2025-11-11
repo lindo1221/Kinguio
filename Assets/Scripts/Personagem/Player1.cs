@@ -15,17 +15,17 @@ public class Player : MonoBehaviour
     public float raioChao = 0.2f;
     public LayerMask oQueEChao;
     public bool noChao;
-    public bool Djump = true; 
+    public bool Djump = true;
+    bool estapulando = false;
 
     private DialogueSystemnew dialogueSystem;
     private SpriteRenderer spriteRenderer;
 
     Respiracao Respiracao;
     public HeartSystem heartSystem;
- 
+    public SpriteRenderer item;
     bool ativar = true;
-    
-
+    int velocidadePulo = 4;
     [SerializeField] public Animator animator;
    
     void Start()
@@ -62,14 +62,22 @@ public class Player : MonoBehaviour
     {
         animator.SetBool("IsJump", true);
         if (context.phase == InputActionPhase.Performed && noChao)
-        {       
+        {
+            rg.velocity = Vector3.zero;
             rg.AddForce(Vector2.up * pulo);
             Djump = true;
+            estapulando = true;
         }
-        else if(context.phase == InputActionPhase.Performed && Djump)
+        else if (context.phase == InputActionPhase.Canceled && rg.velocity.y > 0)
         {
-            
-            rg.AddForce(Vector2.up * pulo);
+            new WaitForSeconds(2f);
+            rg.velocity = new Vector2(rg.velocity.x, rg.velocity.y * 0.4F);
+        }
+
+        else if (context.phase == InputActionPhase.Performed && Djump)
+        {
+            rg.velocity = Vector3.zero;
+            rg.AddForce(Vector2.up * 400);
             Djump = false;
         }
         //else if (context.phase == InputActionPhase.Performed && Respiracao.naAgua)
@@ -84,6 +92,9 @@ public class Player : MonoBehaviour
     {
         if (ativar)
         rg.velocity = new Vector2(mover.x * velocidade, rg.velocity.y);
+
+        if (estapulando) rg.velocity = new Vector2(rg.velocity.x, 2); estapulando = false;
+
     }
    
     public void OnCollisionEnter2D(Collision2D collision)
@@ -91,6 +102,7 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("chao"))
         {
             animator.SetBool("IsJump", false);
+            estapulando = false;
         }
         if (collision.gameObject.CompareTag("sair"))
         {
