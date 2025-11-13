@@ -27,6 +27,9 @@ public class Player : MonoBehaviour
     bool ativar = true;
     int velocidadePulo = 4;
     [SerializeField] public Animator animator;
+
+    public bool temAChave = false;
+    public SpriteRenderer balao;
    
     void Start()
     {
@@ -68,7 +71,7 @@ public class Player : MonoBehaviour
             Djump = true;
             estapulando = true;
         }
-        else if (context.phase == InputActionPhase.Canceled && rg.velocity.y > 0)
+        else if (context.phase == InputActionPhase.Canceled && rg.velocity.y > 0 && Djump)
         {
             new WaitForSeconds(2f);
             rg.velocity = new Vector2(rg.velocity.x, rg.velocity.y * 0.4F);
@@ -77,7 +80,7 @@ public class Player : MonoBehaviour
         else if (context.phase == InputActionPhase.Performed && Djump)
         {
             rg.velocity = Vector3.zero;
-            rg.AddForce(Vector2.up * 400);
+            rg.AddForce(Vector2.up * 330);
             Djump = false;
         }
         //else if (context.phase == InputActionPhase.Performed && Respiracao.naAgua)

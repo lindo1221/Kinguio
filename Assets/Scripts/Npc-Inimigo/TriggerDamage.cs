@@ -19,17 +19,16 @@ public class TriggerDamage : MonoBehaviour
     {
         
     }
-    public void OnCollisionEnter2D(Collision2D collision)
+    public void OnTriggerEnter2D(Collider2D collision)
     {
-        if (mortal) 
+        if (mortal)
         {
             if (collision.gameObject.CompareTag("player"))
             {
                 heart.vida--;
                 StartCoroutine(imortal());
             }
-        }
-       
+        }      
     }
     public IEnumerator imortal()
     {

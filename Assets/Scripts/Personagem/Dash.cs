@@ -27,11 +27,11 @@ public class Dash : MonoBehaviour
     {
         if (temOColar)
         {
-            direcao = player.transform.localScale.x;
-            player.StartCoroutine(player.Desativar());
-
             if (estaemcool == false && context.phase == InputActionPhase.Performed)
             {
+                direcao = player.transform.localScale.x;
+                player.StartCoroutine(player.Desativar());
+                StartCoroutine(Animacao());
                 StartCoroutine(Cooldown());
                 if (context.phase == InputActionPhase.Performed && direcao >= 1)
                 {
@@ -41,7 +41,7 @@ public class Dash : MonoBehaviour
                 {
                     player.rg.AddForce(Vector2.left * 23, ForceMode2D.Impulse);
                 }
-                StartCoroutine(Animacao());
+              
             }
         }
 
@@ -49,13 +49,13 @@ public class Dash : MonoBehaviour
     public IEnumerator Animacao() 
     {     
         tr.emitting = true;
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.4f);
         tr.emitting = false;
     }
     public IEnumerator Cooldown() 
     {
         estaemcool = true;
-        yield return new WaitForSeconds(0.4f);
+        yield return new WaitForSeconds(0.6f);
         estaemcool = false;
     }
 }

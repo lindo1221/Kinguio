@@ -11,9 +11,8 @@ public class Knock : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
     }
-    public void OnCollisionEnter2D(Collision2D collision)
+    public void OnTriggerEnter2D(Collider2D collision)
     {
-       
         if (collision.gameObject.CompareTag("inimigo"))
         {
             player.StartCoroutine(player.Desativar());
@@ -28,14 +27,14 @@ public class Knock : MonoBehaviour
         {
             rb.velocity = Vector3.zero;
             rb.AddForce(Vector2.up.normalized * 200);
-            rb.AddForce(Vector2.left.normalized * 300);
+            rb.AddForce(Vector2.left.normalized * 400);
             Debug.Log("fsef");
         }
         else
         {
             rb.velocity = Vector3.zero;
             rb.AddForce(Vector2.up.normalized * 200);
-            rb.AddForce(Vector2.right.normalized * 300);
+            rb.AddForce(Vector2.right.normalized * 400);
             Debug.Log("fs34534ef");
         }
       

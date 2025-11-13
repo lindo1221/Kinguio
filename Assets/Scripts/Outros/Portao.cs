@@ -5,7 +5,6 @@ using UnityEngine;
 public class Portao : MonoBehaviour
 {
     public GameObject tranca;
-    public bool temChave = false;
     public GameObject avisoTranca;
     public Player player;
     void Start()
@@ -25,10 +24,10 @@ public class Portao : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("player"))
         {
-            if (temChave)
+            if (player.temAChave)
             {
                 tranca.SetActive(true);
-                player.item.sprite = null;
+                player.balao.sprite = null;
             }
             else
             {

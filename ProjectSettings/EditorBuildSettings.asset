@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Praia.unity
     guid: 849a6a70598e45044b285451adf619bd
+  - enabled: 1
+    path: Assets/Scenes/VilaDestruida.unity
+    guid: a2d0599808b2fce48a9dc5d0977614f4
   m_configObjects: {}

@@ -5,10 +5,9 @@ using UnityEngine;
 public class LevarDano : MonoBehaviour
 {
     public Inimigo mover;
-    public int vida = 10;
+    public int vida = 5;
     public Energia energia;
     public bool receberEenrgia = true;
-    public Inimigo inimigo;
     void Start()
     {
        

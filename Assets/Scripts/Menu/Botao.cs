@@ -19,7 +19,7 @@ public class Botao : MonoBehaviour
     }
     public void Play() 
     {
-        SceneManager.LoadScene("Praia");
+        SceneManager.LoadScene("VilaDestruida");
 
     }
     public void credits() 
